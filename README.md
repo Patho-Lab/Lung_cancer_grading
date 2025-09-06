@@ -4,7 +4,6 @@ This repository contains the official PyTorch implementation for the models desc
 
 Our work introduces a deep learning framework to improve the objectivity and accuracy of lung adenocarcinoma grading. By computationally generating virtual elastin fluorescence images from standard H&E slides, our model can better distinguish between non-invasive and invasive histological patterns, leading to more reliable prognostic grading.
 
-[Link to Full Paper](#) <!-- Add a link to your publication here -->
 
 ## Abstract
 
