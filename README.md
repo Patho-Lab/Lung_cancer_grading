@@ -45,40 +45,26 @@ This repository contains scripts for three distinct models: H&E-only, Fluorescen
 
 ---
 
-### H&E-Only Model (`HE/`)
+H&E-Only Model (HE/)This is the baseline model trained and evaluated exclusively on standard Hematoxylin and Eosin (H&E) stained images.1. Data PreparationThe HE model scripts expect different data structures for training and inference.For Training: Data must be organized into class subdirectories.plaintext
 
-This is the baseline model trained and evaluated exclusively on standard Hematoxylin and Eosin (H&E) stained images.
+/path/to/he_training_data/
+├── class_a/
+│   ├── tile_001.png
+│   └── ...
+└── class_b/
+    └── ...
 
-#### 1. Data Preparation
+For Inference: Tiles should be grouped into subfolders, where each subfolder represents a single Whole-Slide Image (WSI).plaintext
 
-The `HE` model scripts expect different data structures for training and inference.
+/path/to/he_inference_data/
+├── WSI_01/
+│   ├── tile_001.png
+│   └── ...
+└── WSI_02/
+    └── ...
 
-*   **For Training:** Data must be organized into class subdirectories.
-    ```
-    /path/to/he_training_data/
-    ├── class_a/
-    │   ├── tile_001.png
-    │   └── ...
-    └── class_b/
-        └── ...
-    ```
+2. TrainingStep 1: Configure HE/train.pyOpen the script and modify the path variables and hyperparameters.python
 
-*   **For Inference:** Tiles should be grouped into subfolders, where each subfolder represents a single Whole-Slide Image (WSI).
-    ```
-    /path/to/he_inference_data/
-    ├── WSI_01/
-    │   ├── tile_001.png
-    │   └── ...
-    └── WSI_02/
-        └── ...
-    ```
-
-#### 2. Training
-
-**Step 1: Configure `HE/train.py`**
-Open the script and modify the path variables and hyperparameters.
-
-```python
 # --- HE/train.py ---
 if __name__ == "__main__":
     TRAIN_IMAGE_PATH = "/path/to/he_training_data"
@@ -138,5 +124,52 @@ Step 2: Run Inference and Evaluationbash
 
 python Fluo/infer.py
 
-This produces a comprehensive report in the inference_fluo directory, including a confusion matrix, ROC/AUC curves, and a CSV with per-image predictions and confidence intervals.
+This produces a comprehensive report in the inference_fluo directory, including a confusion matrix, ROC/AUC curves, and a CSV with per-image predictions and confidence intervals.Dual-Stream Model (Dual/)This is the primary model from our study, which fuses information from both H&E and EBEF images.1. Data PreparationThe Dual model requires perfectly paired H&E and EBEF images with identical filenames, organized in parallel directory structures.For Training: Paired images must exist within corresponding class subdirectories.plaintext
+
+# H&E Data
+/path/to/training_data/he/class_a/tile_001.png
+
+# Fluorescence Data
+/path/to/training_data/ebef/class_a/tile_001.png
+
+For Inference: Paired images must exist within corresponding WSI subdirectories.plaintext
+
+# H&E Data
+/path/to/inference_data/he/WSI_01/tile_001.png
+
+# Fluorescence Data
+/path/to/inference_data/ebef/WSI_01/tile_001.png
+
+2. TrainingStep 1: Configure Dual/training.pyOpen the script and set the paths for both H&E and fluorescence data.python
+
+# --- Dual/training.py ---
+def main():
+    TRAIN_HE_PATH = "/path/to/training_data/he"
+    TRAIN_FLUOR_PATH = "/path/to/training_data/ebef"
+    VAL_HE_PATH = "/path/to/validation_data/he"
+    VAL_FLUOR_PATH = "/path/to/validation_data/ebef"
+    CHECKPOINT_DIR = "checkpoints_dual"
+    # ... other settings ...
+
+Step 2: Run Trainingbash
+
+python Dual/training.py
+
+Checkpoints and logs will be saved to the checkpoints_dual directory.3. InferenceStep 1: Configure Dual/infer.pyOpen the script and set the paths for the paired inference data and the trained dual-stream model.python
+
+# --- Dual/infer.py ---
+if __name__ == "__main__":
+    INFERENCE_HE_PATH = "/path/to/inference_data/he"
+    INFERENCE_FLUOR_PATH = "/path/to/inference_data/ebef"
+    CHECKPOINT_PATH = "checkpoints_dual/best_checkpoint_... .pth"
+    OUTPUT_DIR = "./inference_dual"
+    # ... other settings ...
+
+Step 2: Run Inferencebash
+
+python Dual/infer.py
+
+A CSV with predictions will be generated for each WSI subfolder in the inference_dual directory.
+
+
 
