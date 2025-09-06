@@ -88,13 +88,27 @@ if __name__ == "__main__":
 ```
 
 **Step 2: Run Training**
+```
+python HE/train.py
+```
 
+#### 3. Inference
+**Step 1: Configure HE/infer.py**
+Open the script and set the paths to your inference data and trained model.
+Checkpoints and logs will be saved to the checkpoints_he directory.
+# --- HE/infer.py ---
+Open the script and set the paths to your inference data and trained model.
+```
+if __name__ == "__main__":
+    INFERENCE_IMAGE_PATH = "/path/to/he_inference_data"
+    CHECKPOINT_PATH = "checkpoints_he/best_checkpoint_... .pth"
+    OUTPUT_DIR = "./inference_he"
+    # ... other settings ...
+```
 
-
-
-
-
-
-
+**Step 2: Run Inference**
+```
+python HE/infer.py
+```
 
 
