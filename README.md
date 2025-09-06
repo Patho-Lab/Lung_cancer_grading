@@ -96,10 +96,8 @@ python HE/train.py
 **Step 1: Configure HE/infer.py**
 
 Open the script and set the paths to your inference data and trained model.
-
---- HE/infer.py ---
-Open the script and set the paths to your inference data and trained model.
 ```
+# --- HE/infer.py ---
 if __name__ == "__main__":
     INFERENCE_IMAGE_PATH = "/path/to/he_inference_data"
     CHECKPOINT_PATH = "checkpoints_he/best_checkpoint_... .pth"
