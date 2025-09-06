@@ -111,3 +111,30 @@ python HE/infer.py
 ```
 A CSV with predictions will be generated for each WSI subfolder in the inference_he directory.
 
+### Fluorescence-Only Model (`Fluo/`)
+
+This is the baseline model trained and evaluated exclusively on eosin-based elastin fluorescence (EBEF) images.
+
+#### 1. Data Preparation
+
+Both training and evaluation scripts for the `Fluo` model expect data to be organized into class subdirectories.
+
+#### 2. Training
+
+**Step 1: Configure `Fluo/train.py`**
+
+Open the script and modify the path variables and hyperparameters.
+
+```python
+# --- Fluo/train.py ---
+if __name__ == "__main__":
+    TRAIN_FLUOR_PATH = "/path/to/fluo_training_data"
+    VAL_FLUOR_PATH = "/path/to/fluo_validation_data"
+    CHECKPOINT_DIR = "checkpoints_fluo"
+
+# --- Fluo/infer.py ---
+if __name__ == "__main__":
+    INFERENCE_FLUOR_PATH = "/path/to/fluo_test_data"
+    CHECKPOINT_PATH = "checkpoints_fluo/best_checkpoint_... .pth"
+    OUTPUT_DIR = "./inference_fluo"
+    # ... other settings ...
