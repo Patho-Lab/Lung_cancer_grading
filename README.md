@@ -39,26 +39,6 @@ This repository is organized into three main directories, each containing the co
 - PyTorch 2.3+
 - A CUDA-enabled GPU is highly recommended for training (e.g., NVIDIA RTX 4090 as used in the study).
 
-### Installation
-
-1.  **Clone the repository:**
-    ```bash
-    git clone https://github.com/your-username/virtual-elastin-staining.git
-    cd virtual-elastin-staining
-    ```
-
-2.  **Create a virtual environment (recommended):**
-    ```bash
-    python -m venv venv
-    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
-    ```
-
-3.  **Install the required packages:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-    *(You will need to create a `requirements.txt` file listing all dependencies, e.g., `torch`, `torchvision`, `numpy`, `pillow`, `scikit-learn`, etc.)*
-
 ## Usage
 
 ### 1. Data Preparation
