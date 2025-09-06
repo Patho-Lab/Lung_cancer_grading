@@ -94,6 +94,7 @@ python HE/train.py
 
 #### 3. Inference
 **Step 1: Configure HE/infer.py**
+
 Open the script and set the paths to your inference data and trained model.
 Checkpoints and logs will be saved to the checkpoints_he directory.
 --- HE/infer.py ---
