@@ -10,8 +10,8 @@ Our work introduces a deep learning framework to improve the objectivity and acc
 
 > The histological grading of lung adenocarcinoma is critical for predicting patient prognosis and guiding therapy, yet it is limited by significant inter-observer variability. Distinguishing non-invasive lepidic patterns from invasive subtypes is a primary diagnostic challenge, hinging on the visualization of the underlying elastic fiber framework, which is often unclear in standard hematoxylin and eosin (H&E) stains. We developed a deep learning framework to improve grading objectivity by computationally visualizing elastic fibers from routine H&E slides. Our results show that integrating H&E with high-fidelity synthesized elastin fluorescence images achieves a final grading accuracy of 94.2%, substantially exceeding the 79.6% accuracy of an H&E-only model. When applied to The Cancer Genome Atlas (TCGA), the AI-assigned grades significantly stratified overall patient survival (log-rank p = 0.047), demonstrating the model's prognostic relevance.
 
-![Framework Diagram](https://github.com/your-username/your-repo/blob/main/path/to/figure2.png)
-*Figure 2 from the paper, illustrating the multi-modal deep learning framework. (Please replace the link with an actual image in your repository)*
+![Figure2](https://github.com/user-attachments/assets/407467e7-cef2-42c8-aea8-398c8b268b82)
+Figure 2 from the paper, illustrating the multi-modal deep learning framework. (Please replace the link with an actual image in your repository)*
 
 ## Key Features
 
