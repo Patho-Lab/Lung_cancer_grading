@@ -85,4 +85,16 @@ if __name__ == "__main__":
     TRAIN_IMAGE_PATH = "/path/to/he_training_data"
     VAL_IMAGE_PATH = "/path/to/he_validation_data"
     CHECKPOINT_DIR = "checkpoints_he"
-    # ... other settings ...
+```
+
+**Step 2: Run Training**
+
+
+
+
+
+
+
+
+
+
