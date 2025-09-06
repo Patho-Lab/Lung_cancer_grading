@@ -85,3 +85,58 @@ if __name__ == "__main__":
     VAL_IMAGE_PATH = "/path/to/he_validation_data"
     CHECKPOINT_DIR = "checkpoints_he"
     # ... other settings ...
+
+Step 2: Run Trainingbash
+
+python HE/train.py
+
+Checkpoints and logs will be saved to the checkpoints_he directory.3. InferenceStep 1: Configure HE/infer.pyOpen the script and set the paths to your inference data and trained model.python
+
+# --- HE/infer.py ---
+if __name__ == "__main__":
+    INFERENCE_IMAGE_PATH = "/path/to/he_inference_data"
+    CHECKPOINT_PATH = "checkpoints_he/best_checkpoint_... .pth"
+    OUTPUT_DIR = "./inference_he"
+    # ... other settings ...
+
+Step 2: Run Inferencebash
+
+python HE/infer.py
+
+A CSV with predictions will be generated for each WSI subfolder in the inference_he directory.Fluorescence-Only Model (Fluo/)This is the baseline model trained and evaluated exclusively on eosin-based elastin fluorescence (EBEF) images.1. Data PreparationBoth training and evaluation scripts for the Fluo model expect data to be organized into class subdirectories.plaintext
+
+/path/to/fluorescence_data/
+├── class_a/
+│   ├── tile_001.png
+│   └── ...
+└── class_b/
+    └── ...
+
+2. TrainingStep 1: Configure Fluo/train.pyOpen the script and modify the path variables and hyperparameters.python
+
+# --- Fluo/train.py ---
+if __name__ == "__main__":
+    TRAIN_FLUOR_PATH = "/path/to/fluo_training_data"
+    VAL_FLUOR_PATH = "/path/to/fluo_validation_data"
+    CHECKPOINT_DIR = "checkpoints_fluo"
+    # ... other settings ...
+
+Step 2: Run Trainingbash
+
+python Fluo/train.py
+
+Checkpoints and logs will be saved to the checkpoints_fluo directory.3. Inference and EvaluationThe inference script performs a full evaluation, generating detailed metrics and plots.Step 1: Configure Fluo/infer.pyOpen the script and set the paths to your test data and trained model.python
+
+# --- Fluo/infer.py ---
+if __name__ == "__main__":
+    INFERENCE_FLUOR_PATH = "/path/to/fluo_test_data"
+    CHECKPOINT_PATH = "checkpoints_fluo/best_checkpoint_... .pth"
+    OUTPUT_DIR = "./inference_fluo"
+    # ... other settings ...
+
+Step 2: Run Inference and Evaluationbash
+
+python Fluo/infer.py
+
+This produces a comprehensive report in the inference_fluo directory, including a confusion matrix, ROC/AUC curves, and a CSV with per-image predictions and confidence intervals.
+
