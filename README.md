@@ -109,5 +109,5 @@ if __name__ == "__main__":
 ```
 python HE/infer.py
 ```
-
+A CSV with predictions will be generated for each WSI subfolder in the inference_he directory.
 
