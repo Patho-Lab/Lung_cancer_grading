@@ -111,7 +111,9 @@ python HE/infer.py
 ```
 A CSV with predictions will be generated for each WSI subfolder in the inference_he directory.
 
-### Fluorescence-Only Model (`Fluo/`)
+
+
+### Fluorescence-Only Model (`Fluo/`), only show the training steps, the inference steps should be refered the HE/infer.py
 
 This is the baseline model trained and evaluated exclusively on eosin-based elastin fluorescence (EBEF) images.
 
@@ -131,10 +133,33 @@ if __name__ == "__main__":
     TRAIN_FLUOR_PATH = "/path/to/fluo_training_data"
     VAL_FLUOR_PATH = "/path/to/fluo_validation_data"
     CHECKPOINT_DIR = "checkpoints_fluo"
+```
 
-# --- Fluo/infer.py ---
-if __name__ == "__main__":
-    INFERENCE_FLUOR_PATH = "/path/to/fluo_test_data"
-    CHECKPOINT_PATH = "checkpoints_fluo/best_checkpoint_... .pth"
-    OUTPUT_DIR = "./inference_fluo"
-    # ... other settings ...
+
+### Dual-Stream Model (Dual/), only show the training steps, the inference steps should be refered the HE/infer.py
+
+
+This is the primary model from our study, which fuses information from both H&E and EBEF images.
+
+#### 1. Data Preparation
+
+The Dual model requires perfectly paired H&E and EBEF images with identical filenames, organized in parallel directory structures.
+
+#### 2. Training
+
+**Step 1: Configure `Fluo/train.py`**
+
+Open the script and modify the path variables and hyperparameters.
+
+```python
+# --- Dual/training.py ---
+def main():
+    TRAIN_HE_PATH = "/path/to/training_data/he"
+    TRAIN_FLUOR_PATH = "/path/to/training_data/ebef"
+    VAL_HE_PATH = "/path/to/validation_data/he"
+    VAL_FLUOR_PATH = "/path/to/validation_data/ebef"
+    CHECKPOINT_DIR = "checkpoints_dual"
+```
+
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
